@@ -61,9 +61,34 @@ class Server {
    */
   routes () {
     new routes.users.Create(this.app, this.connect)
-    new routes.users.Show(this.app, this.connect)
-    new routes.users.Update(this.app)
-    new routes.users.Delete(this.app)
+    new routes.users.Show(this.app)
+    new routes.users.Update(this.app, this.connect)
+    new routes.users.Delete(this.app,this.connect)
+
+    new routes.albums.Create(this.app, this.connect)
+    new routes.albums.Show(this.app, this.connect)
+    new routes.albums.Update(this.app, this.connect)
+    new routes.albums.Delete(this.app, this.connect)
+
+    new routes.chats.Create(this.app, this.connect)
+    new routes.chats.Show(this.app, this.connect)
+    new routes.chats.Update(this.app, this.connect)
+    new routes.chats.Delete(this.app, this.connect)
+
+    new routes.events.Create(this.app, this.connect)
+    new routes.events.Show(this.app, this.connect)
+    new routes.events.Update(this.app, this.connect)
+    new routes.events.Delete(this.app, this.connect)
+
+    new routes.groups.Create(this.app, this.connect)
+    new routes.groups.Show(this.app, this.connect)
+    new routes.groups.Update(this.app, this.connect)
+    new routes.groups.Delete(this.app, this.connect)
+
+    new routes.surveys.Create(this.app, this.connect)
+    new routes.surveys.Show(this.app, this.connect)
+    new routes.surveys.Update(this.app, this.connect)
+    new routes.surveys.Delete(this.app, this.connect)
 
     this.app.use((req, res) => {
       res.status(404).json({
