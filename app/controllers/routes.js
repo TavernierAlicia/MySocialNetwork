@@ -2,6 +2,7 @@ const CreateUser = require('./users/create.js')
 const ShowUser = require('./users/show.js')
 const UpdateUser = require('./users/update.js')
 const DeleteUser = require('./users/delete.js')
+const ListUser = require('./users/list.js')
 
 const CreateGroup = require('./groups/create.js')
 const ShowGroup = require('./groups/show.js')
@@ -33,7 +34,8 @@ module.exports = {
     Create: CreateUser,
     Show: ShowUser,
     Update: UpdateUser,
-    Delete: DeleteUser
+    Delete: DeleteUser,
+    List: ListUser
   },
   albums: {
     Create: CreateAlbum,

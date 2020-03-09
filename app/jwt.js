@@ -96,7 +96,6 @@ class JWT {
 
   express () {
     process.env.TOKENS = '1234'
-
     return (req, res, next) => {
       if (req.headers['access-token'] || req.headers['token']) {
         const token = req.headers['access-token'] || req.headers['token']

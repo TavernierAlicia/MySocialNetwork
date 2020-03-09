@@ -1,6 +1,5 @@
   
-const User = require('../../models/user.js')
-const JWT = require('../../jwt')
+const Group = require('../../models/group.js')
 
 /**
  * Create
@@ -9,9 +8,8 @@ const JWT = require('../../jwt')
 class Show {
   constructor (app, connect) {
     this.app = app
-    this.UserModel = connect.model('User', User)
-    this.jwt = new JWT()
-
+    this.GroupModel = connect.model('Group', Group)
+    
     this.run()
   }
 
@@ -19,12 +17,12 @@ class Show {
    * middleware
    */
   middleware () {
-    this.app.get('/user/show/:id', this.jwt.express(), (req, res) => {
+    this.app.get('/group/show/:id', (req, res) => {
       try {
         const { id } = req.params
 
-        this.UserModel.findById(id).then(user => {
-          res.status(200).json(user || {})
+        this.GroupModel.findById(id).then(group => {
+          res.status(200).json(group || {})
         }).catch(err => {
           res.status(500).json({
             'code': 500,

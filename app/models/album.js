@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const AlbumSchema = new mongoose.Schema({
-  event_id: Number,
+  event_id: mongoose.Schema.Types.ObjectId,
   description: String,
   pictures: [
     {

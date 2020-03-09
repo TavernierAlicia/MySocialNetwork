@@ -1,20 +1,20 @@
 const mongoose = require('mongoose')
 
 const ChatSchema = new mongoose.Schema({
-  group_id: Number,
-  event_id: Number,
+  group_id: mongoose.Schema.Types.ObjectId,
+  event_id: mongoose.Schema.Types.ObjectId,
   users: [
     {
-      user_id: Number
+      user_id: mongoose.Schema.Types.ObjectId
     }
   ],
   messages: [
     {
-      user_id: Number,
+      user_id: mongoose.Schema.Types.ObjectId,
       content: String,
       comments: [
         {
-          user_id: Number,
+          user_id: mongoose.Schema.Types.ObjectId,
           content: String
         }
       ]

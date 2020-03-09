@@ -1,4 +1,4 @@
-const User = require('../../models/user.js')
+const Chat = require('../../models/chat.js')
 
 /**
  * Create
@@ -7,7 +7,7 @@ const User = require('../../models/user.js')
 class Create {
   constructor (app, connect) {
     this.app = app
-    this.UserModel = connect.model('User', User)
+    this.ChatModel = connect.model('Chat', Chat)
 
     this.run()
   }
@@ -16,12 +16,13 @@ class Create {
    * middleware
    */
   middleware () {
-    this.app.post('/user/create', (req, res) => {
+    this.app.post('/chat/create', (req, res) => {
       try {
-        const userModel = new this.UserModel(req.body)
-
-        userModel.save().then(user => {
-          res.status(200).json(user || {})
+        const chatModel = new this.ChatModel(req.body)
+        // console.log(groupModel.save())
+        
+        chatModel.save().then(chat => {
+          res.status(200).json(chat || {})
         }).catch(err => {
           res.status(500).json({
             'code': 500,

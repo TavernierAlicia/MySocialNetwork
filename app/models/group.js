@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 const GroupSchema = new mongoose.Schema({
   name: String,
   description: String,
-  creator_id: Number,
+  creator_id: mongoose.Schema.Types.ObjectId,
   admins: [
     {
-      user_id: Number
+      user_id: mongoose.Schema.Types.ObjectId
     }
   ],
   users: [
     {
-      user_id: Number
+      user_id: mongoose.Schema.Types.ObjectId
     }
   ],
   icone: {

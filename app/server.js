@@ -65,6 +65,7 @@ class Server {
     new routes.users.Show(this.app, this.connect)
     new routes.users.Update(this.app, this.connect)
     new routes.users.Delete(this.app, this.connect)
+    new routes.users.List(this.app, this.connect)
 
     new routes.albums.Create(this.app, this.connect)
     new routes.albums.Show(this.app, this.connect)

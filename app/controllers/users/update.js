@@ -1,6 +1,4 @@
 const users = require('../../models/user.js')
-const check = require('./payload-validator/update.js')
-const validator = require('node-validator')
 
 /**
  * Create
@@ -17,25 +15,32 @@ class Update {
    * middleware
    */
   middleware () {
-    this.app.put('/user/update/:id', validator.express(check), (req, res) => {
-      try {
+    this.app.put('/user/update/:id', (req, res) => {
         const { id } = req.params
         const { body } = req
-        const user = users.find(user => user.id === id) || false
-
+        const user = findByIdAndUpdate({ _id: id},body, (err, result) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(result);
+          }
+        }).then(user => {
+          res.status(200).json(user || {})
+        }).catch(err => {
+          res.status(500).json({
+            'code': 500,
+            'message': err
+          })
+        })
+        console.log('TRY 1')
         if (!user) {
+          console.log('TRY 2')
           res.status(200).json({})
 
           return
         }
-
+        console.log('TRY 3')
         res.status(200).json(Object.assign({}, user, body))
-      } catch (err) {
-        res.status(500).json({
-          'code': 500,
-          'message': err
-        })
-      }
     })
   }
 

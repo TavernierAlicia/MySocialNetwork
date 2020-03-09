@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const SurveySchema = new mongoose.Schema({
   name: String,
-  group_id: Number,
-  creator_id: Number,
+  group_id: mongoose.Schema.Types.ObjectId,
+  creator_id: mongoose.Schema.Types.ObjectId,
   questions: [
     {
       title: String,
@@ -14,8 +14,8 @@ const SurveySchema = new mongoose.Schema({
       ],
       participants: [
         {
-          user_id: Number,
-          responce: String
+          user_id: mongoose.Schema.Types.ObjectId,
+          responce: mongoose.Schema.Types.ObjectId
         }
       ]
     }

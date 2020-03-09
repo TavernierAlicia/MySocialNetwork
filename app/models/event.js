@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 
 const EventSchema = new mongoose.Schema({
-  creator_id: Number,
+  creator_id: mongoose.Schema.Types.ObjectId,
+  group_id: mongoose.Schema.Types.ObjectId,
   admins: [
     {
-      user_id: Number
+      user_id: mongoose.Schema.Types.ObjectId
     }
   ],
   participants: [
     {
-      user_id: Number
+      user_id: mongoose.Schema.Types.ObjectId
     }
   ],
   name: String,
