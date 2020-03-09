@@ -1,16 +1,12 @@
 const mongoose = require('mongoose')
 
-const AlbumSchema = new mongoose.Schema({
+const TicketingSchema = new mongoose.Schema({
   event_id: Number,
-  description: String,
-  pictures: [
-    {
-      path: String, 
-      description: String
-    }
-  ]
+  name: String,
+  cost: Number,
+  quantity: Number
 }, {
-  collection: 'albums',
+  collection: 'ticketing',
   minimize: false,
   versionKey: false
 }).set('toJSON', {
@@ -21,4 +17,4 @@ const AlbumSchema = new mongoose.Schema({
   }
 })
 
-module.exports = AlbumSchema
+module.exports = TicketingSchema

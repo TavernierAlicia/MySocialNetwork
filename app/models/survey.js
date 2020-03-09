@@ -9,7 +9,7 @@ const SurveySchema = new mongoose.Schema({
       title: String,
       responces: [
         {
-          title: String,
+          title: String
         }
       ],
       participants: [
@@ -19,7 +19,7 @@ const SurveySchema = new mongoose.Schema({
         }
       ]
     }
-  ],
+  ]
 }, {
   collection: 'surveys',
   minimize: false,

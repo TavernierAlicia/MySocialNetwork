@@ -23,7 +23,7 @@ const GroupSchema = new mongoose.Schema({
     default: 'https://www.g33kmania.com/wp-content/uploads/Tyrion-Lannister-400x400.jpg'
   },
 
-  group_type: ['public','private','secret'],
+  group_type: ['public', 'private', 'secret'], 
   allow_user_publish: {
     type: Boolean,
     default: true 
@@ -31,7 +31,7 @@ const GroupSchema = new mongoose.Schema({
   allow_user_event: {
     type: Boolean,
     default: true
-  },
+  }
 
 }, {
   collection: 'groups',

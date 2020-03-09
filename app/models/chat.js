@@ -5,7 +5,7 @@ const ChatSchema = new mongoose.Schema({
   event_id: Number,
   users: [
     {
-      user_id: Number,
+      user_id: Number
     }
   ],
   messages: [
@@ -15,12 +15,12 @@ const ChatSchema = new mongoose.Schema({
       comments: [
         {
           user_id: Number,
-          content: String,
+          content: String
         }
       ]
     }
   ],
-  description: String,
+  description: String
 }, {
   collection: 'chats',
   minimize: false,

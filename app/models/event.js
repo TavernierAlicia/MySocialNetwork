@@ -4,16 +4,17 @@ const EventSchema = new mongoose.Schema({
   creator_id: Number,
   admins: [
     {
-      user_id: Number,
+      user_id: Number
     }
   ],
   participants: [
     {
-      user_id: Number,
+      user_id: Number
     }
   ],
   name: String,
   description: String,
+  tickets: Boolean,
   begin_date: Date,
   end_date: Date,
   street_num: Number,
@@ -28,7 +29,7 @@ const EventSchema = new mongoose.Schema({
   privacy: {
     type: Boolean,
     default: true
-  },
+  }
 
 }, {
   collection: 'events',

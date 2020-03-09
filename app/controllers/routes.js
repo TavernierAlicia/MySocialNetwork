@@ -18,54 +18,51 @@ const ShowEvent = require('./events/show.js')
 const UpdateEvent = require('./events/update.js')
 const DeleteEvent = require('./events/delete.js')
 
-const CreateSurvey = require('./survey/create.js')
-const ShowSurvey = require('./survey/show.js')
-const UpdateSurvey = require('./survey/update.js')
-const DeleteSurvey = require('./survey/delete.js')
+const CreateSurvey = require('./surveys/create.js')
+const ShowSurvey = require('./surveys/show.js')
+const UpdateSurvey = require('./surveys/update.js')
+const DeleteSurvey = require('./surveys/delete.js')
 
-const CreateChat = require('./chat/create.js')
-const ShowChat = require('./chat/show.js')
-const UpdateChat = require('./chat/update.js')
-const DeleteChat = require('./chat/delete.js')
-
-
-
+const CreateChat = require('./chats/create.js')
+const ShowChat = require('./chats/show.js')
+const UpdateChat = require('./chats/update.js')
+const DeleteChat = require('./chats/delete.js')
 
 module.exports = {
   users: {
-    CreateUser,
-    ShowUser,
-    UpdateUser,
-    DeleteUser
+    Create: CreateUser,
+    Show: ShowUser,
+    Update: UpdateUser,
+    Delete: DeleteUser
   },
   albums: {
-    CreateAlbum,
-    ShowAlbum,
-    UpdateAlbum,
-    DeleteAlbum
+    Create: CreateAlbum,
+    Show: ShowAlbum,
+    Update: UpdateAlbum,
+    Delete: DeleteAlbum
   },
   chats: {
-    CreateChat,
-    ShowChat,
-    UpdateChat,
-    DeleteChat
+    Create: CreateChat,
+    Show: ShowChat,
+    Update: UpdateChat,
+    Delete: DeleteChat
   },
   groups: {
-    CreateGroup,
-    ShowGroup,
-    UpdateGroup,
-    DeleteGroup
+    Create: CreateGroup,
+    Show: ShowGroup,
+    Update: UpdateGroup,
+    Delete: DeleteGroup
   },
   events: {
-    CreateEvent,
-    ShowEvent,
-    UpdateEvent,
-    DeleteEvent
+    Create: CreateEvent,
+    Show: ShowEvent,
+    Update: UpdateEvent,
+    Delete: DeleteEvent
   },
   surveys: {
-    CreateSurvey,
-    ShowSurvey,
-    UpdateSurvey,
-    DeleteSurvey
+    Create: CreateSurvey,
+    Show: ShowSurvey,
+    Update: UpdateSurvey,
+    Delete: DeleteSurvey
   }
 }

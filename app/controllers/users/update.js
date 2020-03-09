@@ -1,4 +1,4 @@
-const users = require('../../models/')
+const users = require('../../models/user.js')
 const check = require('./payload-validator/update.js')
 const validator = require('node-validator')
 

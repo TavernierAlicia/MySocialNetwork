@@ -11,6 +11,7 @@ const cors = require('cors')
 class Server {
   constructor () {
     this.app = express()
+    this.port = 3000
   }
 
   /**
@@ -61,9 +62,9 @@ class Server {
    */
   routes () {
     new routes.users.Create(this.app, this.connect)
-    new routes.users.Show(this.app)
+    new routes.users.Show(this.app, this.connect)
     new routes.users.Update(this.app, this.connect)
-    new routes.users.Delete(this.app,this.connect)
+    new routes.users.Delete(this.app, this.connect)
 
     new routes.albums.Create(this.app, this.connect)
     new routes.albums.Show(this.app, this.connect)
@@ -107,7 +108,8 @@ class Server {
       this.dbConnect()
       this.middleware()
       this.routes()
-      this.app.listen(3000)
+      this.app.listen(this.port)
+      console.info(`[INFO] Server is running on port ${this.port}`)
     } catch (err) {
       console.error(`[ERROR] Server -> ${err}`)
     }

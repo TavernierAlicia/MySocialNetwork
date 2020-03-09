@@ -1,4 +1,4 @@
-const users = require('../../models/')
+const users = require('../../models/user')
 
 /**
  * Create
@@ -7,7 +7,7 @@ const users = require('../../models/')
 class Delete {
   constructor (app) {
     this.app = app
-
+    
     this.run()
   }
 
