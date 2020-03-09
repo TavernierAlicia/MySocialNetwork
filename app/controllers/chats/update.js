@@ -1,14 +1,13 @@
-const users = require('../../models/user.js')
-const check = require('./payload-validator/update.js')
-const validator = require('node-validator')
+const Chat = require('../../models/chat.js')
 
 /**
  * Create
  * @class
  */
 class Update {
-  constructor (app) {
+  constructor (app, connect) {
     this.app = app
+    this.ChatModel = connect.model('Chat', Chat)
 
     this.run()
   }
@@ -17,25 +16,19 @@ class Update {
    * middleware
    */
   middleware () {
-    this.app.put('/user/update/:id', validator.express(check), (req, res) => {
-      try {
-        const { id } = req.params
-        const { body } = req
-        const user = users.find(user => user.id === id) || false
-
-        if (!user) {
-          res.status(200).json({})
-
-          return
+    this.app.put('/chat/update/:id', (req, res) => {
+      const { id } = req.params
+      const { body } = req
+      this.ChatModel.findByIdAndUpdate({ _id: id }, body, (err, result) => {
+        if (err) {
+          res.status(500).json({
+            'code': 500,
+            'message': err
+          })
+        } else {
+          res.status(200).json(Object.assign({}, result))
         }
-
-        res.status(200).json(Object.assign({}, user, body))
-      } catch (err) {
-        res.status(500).json({
-          'code': 500,
-          'message': err
-        })
-      }
+      })
     })
   }
 

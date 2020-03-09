@@ -1,13 +1,14 @@
-const users = require('../../models/user')
+const Chat = require('../../models/chat')
 
 /**
  * Create
  * @class
  */
 class Delete {
-  constructor (app) {
+  constructor (app, connect) {
     this.app = app
-    
+    this.ChatModel = connect.model('Chat', Chat)
+
     this.run()
   }
 
@@ -15,17 +16,18 @@ class Delete {
    * middleware
    */
   middleware () {
-    this.app.delete('/user/delete/:id', (req, res) => {
-      try {
-        const { id } = req.params
-
-        res.status(200).json(users.map(user => user.id !== id ? user : false))
-      } catch (err) {
-        res.status(500).json({
-          'code': 500,
-          'message': err
-        })
-      }
+    this.app.delete('/chat/delete/:id', (req, res) => {
+      const { id } = req.params
+      this.ChatModel.findByIdAndDelete({ _id: id }, (err, result) => {
+        if (err) {
+          res.status(500).json({
+            'code': 500,
+            'message': err
+          })
+        } else {
+          res.status(200).json(Object.assign({}, result))
+        }
+      })
     })
   }
 

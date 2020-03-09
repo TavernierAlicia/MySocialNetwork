@@ -1,13 +1,14 @@
-const users = require('../../models/user')
+const User = require('../../models/user')
 
 /**
  * Create
  * @class
  */
 class Delete {
-  constructor (app) {
+  constructor (app, connect) {
     this.app = app
-    
+    this.UserModel = connect.model('User', User)
+
     this.run()
   }
 
@@ -16,16 +17,17 @@ class Delete {
    */
   middleware () {
     this.app.delete('/user/delete/:id', (req, res) => {
-      try {
-        const { id } = req.params
-
-        res.status(200).json(users.map(user => user.id !== id ? user : false))
-      } catch (err) {
-        res.status(500).json({
-          'code': 500,
-          'message': err
-        })
-      }
+      const { id } = req.params
+      this.UserModel.findByIdAndDelete({ _id: id }, (err, result) => {
+        if (err) {
+          res.status(500).json({
+            'code': 500,
+            'message': err
+          })
+        } else {
+          res.status(200).json(Object.assign({}, result))
+        }
+      })
     })
   }
 

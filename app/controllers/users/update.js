@@ -1,12 +1,13 @@
-const users = require('../../models/user.js')
+const User = require('../../models/user.js')
 
 /**
  * Create
  * @class
  */
 class Update {
-  constructor (app) {
+  constructor (app, connect) {
     this.app = app
+    this.UserModel = connect.model('User', User)
 
     this.run()
   }
@@ -16,31 +17,18 @@ class Update {
    */
   middleware () {
     this.app.put('/user/update/:id', (req, res) => {
-        const { id } = req.params
-        const { body } = req
-        const user = findByIdAndUpdate({ _id: id},body, (err, result) => {
-          if (err) {
-            res.send(err);
-          } else {
-            res.send(result);
-          }
-        }).then(user => {
-          res.status(200).json(user || {})
-        }).catch(err => {
+      const { id } = req.params
+      const { body } = req
+      this.UserModel.findByIdAndUpdate({ _id: id }, body, (err, result) => {
+        if (err) {
           res.status(500).json({
             'code': 500,
             'message': err
           })
-        })
-        console.log('TRY 1')
-        if (!user) {
-          console.log('TRY 2')
-          res.status(200).json({})
-
-          return
+        } else {
+          res.status(200).json(Object.assign({}, result))
         }
-        console.log('TRY 3')
-        res.status(200).json(Object.assign({}, user, body))
+      })
     })
   }
 
